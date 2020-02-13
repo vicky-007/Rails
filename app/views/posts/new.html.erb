@@ -1,0 +1,27 @@
+<h1>Add posts</h1>
+
+<%= form_for :post, url: posts_path do |x|%>
+    <% if @post.errors.any? %>
+        <% @post.errors.full_messages.each do |error|%>
+            <div class="alert alert-danger"> 
+                <%= error %>
+            </div>
+        <% end %>
+    <% end %>
+
+    <p>
+        <%= x.label :title %><br>
+        <%= x.text_field(:title, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= x.label :body %><br>
+        <%= x.text_field(:body, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= x.submit({:class => 'btn btn-primary'}) %><br>
+    </p>
+<% end %>
+    
+

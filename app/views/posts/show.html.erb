@@ -1,0 +1,35 @@
+<h2> <%= @post.title %> </h2>
+<p> <%= @post.body %> </p>
+<hr>
+<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-primary'%>
+&nbsp;&nbsp;
+<%= link_to "Delete", (@post),method: :delete, data:{confirm: 'Are u sure'}, :class => 'btn btn-danger'%>
+<hr>
+
+<h3>Comments</h3>
+    <% @post.comments.each do |comment|%>
+        <div class="card card-body bg-light d-block">
+            <p><strong><%= comment.username %></strong></p>
+            <p><%= comment.body %></p>
+        </div>
+    <% end %>
+
+
+
+<h3> Add Comment</h3>
+
+<%= form_for([@post, @post.comments.build]) do |x|%>
+    <p>
+        <%= x.label :username %><br>
+        <%= x.text_field(:username, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= x.label :body %><br>
+        <%= x.text_field(:body, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= x.submit({:class => 'btn btn-primary'}) %><br>
+    </p>
+<% end %>
